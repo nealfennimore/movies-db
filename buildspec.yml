@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - apt-get update -y
+      - npm install
+  build:
+    commands:
+      - npm run build
+
+artifacts:
+  files:
+    - src/server/**/*
+    - package.json
