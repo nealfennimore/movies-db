@@ -1,7 +1,6 @@
 /**
  * External Dependencies
  */
-require('core-js');
 const http = require('http');
 
 /**
