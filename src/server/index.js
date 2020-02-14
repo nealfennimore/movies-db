@@ -1,16 +1,17 @@
 /**
  * External Dependencies
  */
+require('core-js');
 const http = require('http');
+
+/**
+ * Internal Dependencies
+ */
+const routeHandler = require('./routes');
 
 const PORT = process.env.PORT || 3000;
 
-const requestHandler = (req, res)=>{
-    res.writeHead(200);
-    res.end('hello world\n');
-};
-
-const server = http.createServer(requestHandler);
+const server = http.createServer(routeHandler);
 
 server.listen(PORT);
 

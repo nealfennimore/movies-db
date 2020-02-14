@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "start": "node src/server/index.js",
-    "build": "echo 'TODO' && exit 0"
+    "start": "node dist/server/index.js",
+    "build": "npm run build:server",
+    "build:server": "babel src/server -d dist/server"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,13 @@
   },
   "homepage": "https://github.com/nealfennimore/movies-db#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
     "babel-eslint": "^10.0.3",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "core-js": "^3.6.4",
     "eslint": "^6.8.0",
     "eslint-config-nfen": "0.0.19"
   }
