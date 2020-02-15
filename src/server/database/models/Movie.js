@@ -32,8 +32,24 @@ const validators = {
  * @class Movie
  */
 class Movie {
+    /**
+     * Validator for the model
+     *
+     * @static
+     * @memberof Movie
+     */
     static validator = modelValidator(validators);
 
+    /**
+     * Create a movie instance
+     *
+     * @static
+     * @param {*} [passedArgs={}] Passed constructor arguments
+     * @param {*} args
+     * @returns {MovieModel} Instance of MovieModel
+     * @throws {TypeError} When invalid constructor args used
+     * @memberof Movie
+     */
     static create( passedArgs={}, ...args){
         const constructorArgs = Object.assign({}, defaultArgs, passedArgs);
 
