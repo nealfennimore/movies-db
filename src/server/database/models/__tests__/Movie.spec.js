@@ -1,5 +1,12 @@
 const Movie = require('../Movie');
 
+function assert(assertion, ...args){
+    console.assert(assertion, ...args);
+    if(assertion !== true){
+        throw new Error('Assertion Failed');
+    }
+}
+
 //
 // ──────────────────────────────────────────────────────────────────────────────────── I ──────────
 //   :::::: T I T L E   V A L I D A T I O N   T E S T S : :  :   :    :     :        :          :
@@ -16,8 +23,8 @@ try {
         title: null
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: title is invalid');
-    console.assert(error instanceof TypeError);    
+    assert(error.message === 'Cannot create: title is invalid');
+    assert(error instanceof TypeError);    
 }
 
 // Test for invalid titles that are below minimum range
@@ -26,8 +33,8 @@ try {
         title: ''
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: title is invalid');
-    console.assert(error instanceof TypeError);    
+    assert(error.message === 'Cannot create: title is invalid');
+    assert(error instanceof TypeError);    
 }
 
 // Test for invalid titles that are outside maximum length
@@ -36,8 +43,8 @@ try {
         title: '*'.repeat(51)
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: title is invalid');
-    console.assert(error instanceof TypeError);    
+    assert(error.message === 'Cannot create: title is invalid');
+    assert(error instanceof TypeError);    
 }
 
 //
@@ -49,15 +56,15 @@ try {
     const movie = Movie.create();
     movie.title = ''; 
 } catch (error) {
-    console.assert(error.message === 'Cannot set: title is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot set: title is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for valid title set
 {
     const movie = Movie.create();
     movie.title = 'Valid';
-    console.assert(movie.title === 'Valid'); 
+    assert(movie.title === 'Valid'); 
 }
 
 //
@@ -76,8 +83,8 @@ try {
         format: 'BluRay'
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: format is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: format is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for all valid formats
@@ -87,7 +94,7 @@ try {
             format
         });
     });
-    console.assert(true, 'Should be valid on all formats');
+    assert(true, 'Should be valid on all formats');
 }
 
 //
@@ -99,8 +106,8 @@ try {
     const movie = Movie.create();
     movie.format = 'BluRay';
 } catch (error) {
-    console.assert(error.message === 'Cannot set: format is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot set: format is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for all valid format sets
@@ -109,7 +116,7 @@ try {
     ['VHS', 'DVD', 'Streaming'].forEach(format => {
         movie.format = format;
     });
-    console.assert(true, 'Should be valid on all format sets');
+    assert(true, 'Should be valid on all format sets');
 }
 
 //
@@ -128,8 +135,8 @@ try {
         length: null
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: length is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: length is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid length below minimum
@@ -138,8 +145,8 @@ try {
         length: -1
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: length is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: length is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid length above maximum
@@ -148,8 +155,8 @@ try {
         length: 501
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: length is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: length is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for all valid length
@@ -163,7 +170,7 @@ try {
     Movie.create({
         length: 500
     });
-    console.assert(true, 'Should all be valid');
+    assert(true, 'Should all be valid');
 }
 
 //
@@ -175,8 +182,8 @@ try {
     const movie = Movie.create();
     movie.length = -1;
 } catch (error) {
-    console.assert(error.message === 'Cannot set: length is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot set: length is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid length set
@@ -184,8 +191,8 @@ try {
     const movie = Movie.create();
     movie.length = 501;
 } catch (error) {
-    console.assert(error.message === 'Cannot set: length is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot set: length is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for all valid length sets
@@ -194,7 +201,7 @@ try {
     [0, 125, 500].forEach(length => {
         movie.length = length;
     });
-    console.assert(true, 'Should be valid on all length sets');
+    assert(true, 'Should be valid on all length sets');
 }
 
 
@@ -214,8 +221,8 @@ try {
         release: null
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: release is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: release is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid release below minimum
@@ -224,8 +231,8 @@ try {
         release: 1799
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: release is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: release is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid release above maximum
@@ -234,8 +241,8 @@ try {
         release: 2101
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: release is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: release is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for all valid release
@@ -249,7 +256,7 @@ try {
     Movie.create({
         release: 2100
     });
-    console.assert(true, 'Should all be valid');
+    assert(true, 'Should all be valid');
 }
 
 //
@@ -261,8 +268,8 @@ try {
     const movie = Movie.create();
     movie.release = 1799;
 } catch (error) {
-    console.assert(error.message === 'Cannot set: release is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot set: release is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid release set
@@ -270,8 +277,8 @@ try {
     const movie = Movie.create();
     movie.release = 2101;
 } catch (error) {
-    console.assert(error.message === 'Cannot set: release is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot set: release is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for all valid release sets
@@ -280,7 +287,7 @@ try {
     [1800, 1900, 2100].forEach(release => {
         movie.release = release;
     });
-    console.assert(true, 'Should be valid on all release sets');
+    assert(true, 'Should be valid on all release sets');
 }
 
 //
@@ -299,8 +306,8 @@ try {
         rating: null
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: rating is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: rating is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid rating below minimum
@@ -309,8 +316,8 @@ try {
         rating: 0
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: rating is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: rating is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid rating above maximum
@@ -319,8 +326,8 @@ try {
         rating: 6
     });
 } catch (error) {
-    console.assert(error.message === 'Cannot create: rating is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot create: rating is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for all valid rating
@@ -334,7 +341,7 @@ try {
     Movie.create({
         rating: 5
     });
-    console.assert(true, 'Should all be valid');
+    assert(true, 'Should all be valid');
 }
 
 //
@@ -346,8 +353,8 @@ try {
     const movie = Movie.create();
     movie.rating = 0;
 } catch (error) {
-    console.assert(error.message === 'Cannot set: rating is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot set: rating is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for invalid rating set
@@ -355,8 +362,8 @@ try {
     const movie = Movie.create();
     movie.rating = 6;
 } catch (error) {
-    console.assert(error.message === 'Cannot set: rating is invalid');
-    console.assert(error instanceof TypeError);
+    assert(error.message === 'Cannot set: rating is invalid');
+    assert(error instanceof TypeError);
 }
 
 // Test for all valid rating sets
@@ -365,5 +372,5 @@ try {
     [1,2,3,4,5].forEach(rating => {
         movie.rating = rating;
     });
-    console.assert(true, 'Should be valid on all rating sets');
+    assert(true, 'Should be valid on all rating sets');
 }
