@@ -6,7 +6,7 @@ const { STATUS_CODES } = require('http');
 /**
  * Internal Dependencies
  */
-const { getSubpath } = require( 'server/utils/path' );
+const { getPathSequence } = require( 'server/utils/path' );
 const api = require( 'server/routes/api' );
 const { NoMatchingRoute } = require('server/errors');
 
@@ -18,9 +18,7 @@ const { NoMatchingRoute } = require('server/errors');
  * @throws {NoMatchingRoute}
  */
 const routes = async (req, res)=> {
-    const path = getSubpath(req, 0);
-
-    switch (path) {
+    switch (res.locals.path.next().value) {
         case 'api':
             return await api(req, res);
     
@@ -38,6 +36,10 @@ const routes = async (req, res)=> {
  */
 const handleRoutes = async (req, res)=> {
     try {
+         // Mimic expressJS API and add context to this request
+        res.locals = {
+            path: getPathSequence(req)
+        };
         await routes(req, res);
     } catch (error) {
         console.error(error);

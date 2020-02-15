@@ -11,18 +11,19 @@ const parsePaths = (req) => {
 };
 
 /**
- * Return the current subpath for the level
- *
+ * Build out an iterable generator for getting the path
+ *  
  * @param {Request} req Request object
- * @param {Number} level Level of route
- * @returns {String|void}
+ * @returns {Generator} Generator for returning the current path
  */
-const getSubpath = (req, level=0) => {
-    const routes = parsePaths(req);
-    return routes[level];
-};
+function* getPathSequence(req) {
+    const paths = parsePaths(req);
+    for( let path of paths) {
+        yield path;
+    }
+}
 
 module.exports = {
     parsePaths,
-    getSubpath,
+    getPathSequence,
 };

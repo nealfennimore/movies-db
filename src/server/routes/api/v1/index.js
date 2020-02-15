@@ -1,7 +1,6 @@
 /**
  * Internal Dependencies
  */
-const { getSubpath } = require( 'server/utils/path' );
 const { NoMatchingRoute } = require('server/errors');
 const movies = require('./movies');
 
@@ -13,9 +12,7 @@ const movies = require('./movies');
  * @throws {NoMatchingRoute}
  */
 const handleV1 = async (req, res)=> {
-    const path = getSubpath(req, 2);
-
-    switch (path) {
+    switch (res.locals.path.next().value) {
         case 'movies':
             return await movies(req, res);
 

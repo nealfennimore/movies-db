@@ -1,4 +1,3 @@
-const { getSubpath } = require( 'server/utils/path' );
 const { NoMatchingRoute } = require('server/errors');
 const movie = require('./movie');
 
@@ -20,7 +19,7 @@ const readMovies = async (req, res) => {
  * @throws {NoMatchingRoute}
  */
 const handleMovies = async (req, res)=> {
-    const path = getSubpath(req, 3);
+    const path = res.locals.path.next().value;
 
     // Check to see if path is a movie id
     if( /^\d+$/.test(path) ){

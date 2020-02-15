@@ -1,7 +1,6 @@
 /**
  * Internal Dependencies
  */
-const { getSubpath } = require( 'server/utils/path' );
 const { NoMatchingRoute } = require('server/errors');
 const v1 = require('./v1');
 
@@ -13,9 +12,7 @@ const v1 = require('./v1');
  * @throws {NoMatchingRoute}
  */
 const handleApi = async (req, res)=> {
-    const path = getSubpath(req, 1);
-
-    switch (path) {
+    switch (res.locals.path.next().value) {
         case 'v1':
             return await v1(req, res);
 
