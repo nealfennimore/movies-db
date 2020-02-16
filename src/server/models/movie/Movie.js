@@ -20,7 +20,7 @@ const defaultArgs = {
  * Validators for valid movie properties
  */
 const validators = {
-    id: value => typeof value === 'number',
+    id: value => typeof Number(value) === 'number',
     title: value => typeof value === 'string' && value.length >= 1 && value.length <= 50,
     format: value => typeof value === 'string' && ['VHS', 'DVD', 'Streaming'].includes(value),
     movie_length: value => typeof value === 'number' && value >= 0 && value <= 500,
@@ -53,12 +53,11 @@ class Movie {
      * @memberof Movie
      */
     static create( passedArgs={}, ...args){
-        const constructorArgs = Object.assign({}, defaultArgs, passedArgs);
-
+        const constructorArgs = { ...defaultArgs, ...passedArgs };
         const ConstructorProxy = new Proxy(MovieModel, Movie.validator);
     
         // Create movie instance by running it through constructor validity handler
-        const movie = new ConstructorProxy(constructorArgs,...args);
+        const movie = new ConstructorProxy(constructorArgs, ...args);
 
         // Return new proxy with movie instance to use setter validity handlers correctly
         return new Proxy(movie, Movie.validator);
