@@ -39,14 +39,14 @@ const handleRoutes = async (req, res)=> {
         let body = [];
         req.on('data', chunk => body.push(chunk));
         req.on('end', async ()=> {
-            body = JSON.stringify( Buffer.concat(body).toString() );
+            body = Buffer.concat(body).toString();
 
             // Mimic expressJS API and add context to this request
-            res.locals = {
+            const locals = {
                 path: getPathSequence(req),
                 payload: JSON.parse( body )
             };
-
+            res.locals = locals;
             await routes(req, res);
         });
     } catch (error) {
