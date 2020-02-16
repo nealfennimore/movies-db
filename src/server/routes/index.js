@@ -36,11 +36,19 @@ const routes = async (req, res)=> {
  */
 const handleRoutes = async (req, res)=> {
     try {
-         // Mimic expressJS API and add context to this request
-        res.locals = {
-            path: getPathSequence(req)
-        };
-        await routes(req, res);
+        let body = [];
+        req.on('data', chunk => body.push(chunk));
+        req.on('end', async ()=> {
+            body = JSON.stringify( Buffer.concat(body).toString() );
+
+            // Mimic expressJS API and add context to this request
+            res.locals = {
+                path: getPathSequence(req),
+                payload: JSON.parse( body )
+            };
+
+            await routes(req, res);
+        });
     } catch (error) {
         console.error(error);
         res.writeHead(error.code);
