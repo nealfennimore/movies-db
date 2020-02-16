@@ -20,6 +20,7 @@ const defaultArgs = {
  * Validators for valid movie properties
  */
 const validators = {
+    id: value => typeof value === 'number',
     title: value => typeof value === 'string' && value.length >= 1 && value.length <= 50,
     format: value => typeof value === 'string' && ['VHS', 'DVD', 'Streaming'].includes(value),
     movie_length: value => typeof value === 'number' && value >= 0 && value <= 500,
