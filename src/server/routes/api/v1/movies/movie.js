@@ -2,15 +2,18 @@
  * Internal Dependencies
  */
 const { NoMatchingRoute } = require('server/errors');
+const MovieDAO = require('server/models/movie/MovieDAO');
 
 /**
  * Read movie
  * 
  * @param {Request} req 
- * @param {Response} res 
+ * @param {Response} res
+ * @param {Number} id Movie id
  */
-const readMovie = async (req, res) => {
-    res.end( 'TODO: Implement get movie' );
+const readMovie = async (req, res, id) => {
+    const data = await MovieDAO.selectById(id);
+    res.end( JSON.stringify( data ) );
 };
 
 /**
@@ -27,9 +30,10 @@ const createMovie = async (req, res) => {
  * Update movie
  * 
  * @param {Request} req 
- * @param {Response} res 
+ * @param {Response} res
+ * @param {Number} id Movie id
  */
-const updateMovie = async (req, res) => {
+const updateMovie = async (req, res, id) => {
     res.end( 'TODO: Implement update movie' );
 };
 
@@ -38,9 +42,11 @@ const updateMovie = async (req, res) => {
  * 
  * @param {Request} req 
  * @param {Response} res 
+ * @param {Number} id Movie id
  */
-const deleteMovie = async (req, res) => {
-    res.end( 'TODO: Implement delete movie' );
+const deleteMovie = async (req, res, id) => {
+    const data = await MovieDAO.deleteById(id);
+    res.end( JSON.stringify(data) );
 };
 
 /**
@@ -50,20 +56,20 @@ const deleteMovie = async (req, res) => {
  * @param {Response} res 
  * @throws {NoMatchingRoute}
  */
-const handleMovie = async (req, res)=> {
+const handleMovie = async (req, res, id)=> {
     switch (req.method) {
         case 'GET':
-            return await readMovie(req, res);
+            return await readMovie(req, res, id);
 
         case 'POST':
             return await createMovie(req, res);
 
         case 'PATCH':
         case 'PUT':
-            return await updateMovie(req, res);
+            return await updateMovie(req, res, id);
             
         case 'DELETE':
-            return await deleteMovie(req, res);
+            return await deleteMovie(req, res, id);
 
         default:
             throw new NoMatchingRoute('Made it to movie');

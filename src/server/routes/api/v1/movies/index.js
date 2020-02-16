@@ -1,4 +1,5 @@
 const { NoMatchingRoute } = require('server/errors');
+const MovieDAO = require('server/models/movie/MovieDAO');
 const movie = require('./movie');
 
 /**
@@ -8,7 +9,8 @@ const movie = require('./movie');
  * @param {Response} res 
  */
 const readMovies = async (req, res) => {
-    res.end( 'TODO: Implement get movies' );
+    const data = await MovieDAO.selectAll();
+    res.end( JSON.stringify( data ) );
 };
 
 /**
@@ -23,7 +25,7 @@ const handleMovies = async (req, res)=> {
 
     // Check to see if path is a movie id
     if( /^\d+$/.test(path) ){
-        return await movie(req, res);
+        return await movie(req, res, path);
 
     // We have no path, so determine what route to take based off of request method
     } else if ( ! path ) {
