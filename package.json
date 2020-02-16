@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node src/server/database/models/__tests__/Movie.spec.js",
+    "test": "node src/server/models/movie/__tests__/Movie.spec.js",
     "start": "node dist/server/index.js",
     "build": "npm run build:server",
     "build:server": "babel src/server -d dist/server"
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "babel-eslint": "^10.0.3",
@@ -29,5 +30,9 @@
     "core-js": "^3.6.4",
     "eslint": "^6.8.0",
     "eslint-config-nfen": "0.0.19"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^7.18.1"
   }
 }

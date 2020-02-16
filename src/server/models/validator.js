@@ -13,7 +13,7 @@ const modelValidator = (validators={}) => ({
 
         Object.entries(constructorArgs).forEach(([key, value])=> {
             const validator = validators[key];
-            if (! validator(value) ) {
+            if ( ! validator(value) ) {
                 throw new TypeError(`Cannot create: ${key} is invalid`);
             }            
         });

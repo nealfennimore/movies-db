@@ -12,6 +12,7 @@
                     "shared": "./src/shared"
                 }
             }
-        ]
+        ],
+        "@babel/plugin-proposal-class-properties"
     ]
 }

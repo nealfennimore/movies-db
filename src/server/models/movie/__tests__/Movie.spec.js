@@ -132,43 +132,43 @@ try {
 // Test for invalid length
 try {
     Movie.create({
-        length: null
+        movie_length: null
     });
 } catch (error) {
-    assert(error.message === 'Cannot create: length is invalid');
+    assert(error.message === 'Cannot create: movie_length is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for invalid length below minimum
+// Test for invalid movie_length below minimum
 try {
     Movie.create({
-        length: -1
+        movie_length: -1
     });
 } catch (error) {
-    assert(error.message === 'Cannot create: length is invalid');
+    assert(error.message === 'Cannot create: movie_length is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for invalid length above maximum
+// Test for invalid movie_length above maximum
 try {
     Movie.create({
-        length: 501
+        movie_length: 501
     });
 } catch (error) {
-    assert(error.message === 'Cannot create: length is invalid');
+    assert(error.message === 'Cannot create: movie_length is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for all valid length
+// Test for all valid movie_length
 {
     Movie.create({
-        length: 0
+        movie_length: 0
     });
     Movie.create({
-        length: 125
+        movie_length: 125
     });
     Movie.create({
-        length: 500
+        movie_length: 500
     });
     assert(true, 'Should all be valid');
 }
@@ -177,31 +177,31 @@ try {
 // ─── SETTERS ────────────────────────────────────────────────────────────────────
 //
 
-// Test for invalid length set
+// Test for invalid movie_length set
 try {
     const movie = Movie.create();
-    movie.length = -1;
+    movie.movie_length = -1;
 } catch (error) {
-    assert(error.message === 'Cannot set: length is invalid');
+    assert(error.message === 'Cannot set: movie_length is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for invalid length set
+// Test for invalid movie_length set
 try {
     const movie = Movie.create();
-    movie.length = 501;
+    movie.movie_length = 501;
 } catch (error) {
-    assert(error.message === 'Cannot set: length is invalid');
+    assert(error.message === 'Cannot set: movie_length is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for all valid length sets
+// Test for all valid movie_length sets
 {
     const movie = Movie.create();
-    [0, 125, 500].forEach(length => {
-        movie.length = length;
+    [0, 125, 500].forEach(movie_length => {
+        movie.movie_length = movie_length;
     });
-    assert(true, 'Should be valid on all length sets');
+    assert(true, 'Should be valid on all movie_length sets');
 }
 
 
@@ -218,43 +218,43 @@ try {
 // Test for invalid release
 try {
     Movie.create({
-        release: null
+        release_year: null
     });
 } catch (error) {
-    assert(error.message === 'Cannot create: release is invalid');
+    assert(error.message === 'Cannot create: release_year is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for invalid release below minimum
+// Test for invalid release_year below minimum
 try {
     Movie.create({
-        release: 1799
+        release_year: 1799
     });
 } catch (error) {
-    assert(error.message === 'Cannot create: release is invalid');
+    assert(error.message === 'Cannot create: release_year is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for invalid release above maximum
+// Test for invalid release_year above maximum
 try {
     Movie.create({
-        release: 2101
+        release_year: 2101
     });
 } catch (error) {
-    assert(error.message === 'Cannot create: release is invalid');
+    assert(error.message === 'Cannot create: release_year is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for all valid release
+// Test for all valid release_year
 {
     Movie.create({
-        release: 1800
+        release_year: 1800
     });
     Movie.create({
-        release: 1900
+        release_year: 1900
     });
     Movie.create({
-        release: 2100
+        release_year: 2100
     });
     assert(true, 'Should all be valid');
 }
@@ -263,31 +263,31 @@ try {
 // ─── SETTERS ────────────────────────────────────────────────────────────────────
 //
 
-// Test for invalid release set
+// Test for invalid release_year set
 try {
     const movie = Movie.create();
-    movie.release = 1799;
+    movie.release_year = 1799;
 } catch (error) {
-    assert(error.message === 'Cannot set: release is invalid');
+    assert(error.message === 'Cannot set: release_year is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for invalid release set
+// Test for invalid release_year set
 try {
     const movie = Movie.create();
-    movie.release = 2101;
+    movie.release_year = 2101;
 } catch (error) {
-    assert(error.message === 'Cannot set: release is invalid');
+    assert(error.message === 'Cannot set: release_year is invalid');
     assert(error instanceof TypeError);
 }
 
-// Test for all valid release sets
+// Test for all valid release_year sets
 {
     const movie = Movie.create();
-    [1800, 1900, 2100].forEach(release => {
-        movie.release = release;
+    [1800, 1900, 2100].forEach(release_year => {
+        movie.release_year = release_year;
     });
-    assert(true, 'Should be valid on all release sets');
+    assert(true, 'Should be valid on all release_year sets');
 }
 
 //

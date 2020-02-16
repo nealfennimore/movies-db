@@ -36,15 +36,29 @@ const routes = async (req, res)=> {
  */
 const handleRoutes = async (req, res)=> {
     try {
-         // Mimic expressJS API and add context to this request
-        res.locals = {
-            path: getPathSequence(req)
-        };
-        await routes(req, res);
+        let body = [];
+        req.on('data', chunk => body.push(chunk));
+        req.on('end', async ()=> {
+            body = Buffer.concat(body).toString();
+
+            // Mimic expressJS API and add context to this request
+            const locals = {
+                path: getPathSequence(req),
+                payload: body.length ? JSON.parse( body ) : null
+            };
+            res.locals = locals;
+            await routes(req, res);
+        });
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
         res.writeHead(error.code);
-        res.end(STATUS_CODES[error.code]);
+        const json = {
+            error: true,
+            code: error.code,
+            message: STATUS_CODES[error.code],
+        };
+        res.end( JSON.stringify(json) );
     }
 };
 
