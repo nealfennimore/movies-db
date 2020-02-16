@@ -14,6 +14,18 @@ const readMovies = async (req, res) => {
 };
 
 /**
+ * Create movie
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+const createMovie = async (req, res) => {
+    const data = await MovieDAO.create(res.locals.payload);
+    res.end( JSON.stringify( data ) );
+};
+
+
+/**
  * Handle routing for path
  * 
  * @param {Request} req 
@@ -31,7 +43,10 @@ const handleMovies = async (req, res)=> {
     } else if ( ! path ) {
         switch (req.method) {
             case 'GET':
-                return await readMovies(req, res);                       
+                return await readMovies(req, res);
+
+            case 'POST':
+                return await createMovie(req, res);
         }
     }
 

@@ -41,6 +41,40 @@ class MovieDAO {
         return rows;
     }
 
+    /**
+     * Create a new movie
+     * 
+     * @static
+     * @param {Object} payload Payload
+     * @throws {BadRequest}
+     * @returns {Movie}
+     * @memberof MovieDAO
+     */
+    static async create(payload){
+        const movie = Movie.create(payload);
+
+        const { rowCount } = await db.query(
+            `
+                INSERT INTO movies(title, format, movie_length, release_year, rating)
+                VALUES($1, $2, $3, $4, $5)
+            `,
+            [
+                movie.title,
+                movie.format,
+                movie.movie_length,
+                movie.release_year,
+                movie.rating
+            ]
+        );
+
+        if(! rowCount){
+            throw new BadRequest();
+        }
+
+        return movie;
+    }
+
+    /**
     static async update(id, payload){
         const movie = Movie.create({ ...payload, id });
 

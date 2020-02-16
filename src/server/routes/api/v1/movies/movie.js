@@ -12,18 +12,8 @@ const MovieDAO = require('server/models/movie/MovieDAO');
  * @param {Number} id Movie id
  */
 const readMovie = async (req, res, id) => {
-    const data = await MovieDAO.selectById(id);
+    const data = await MovieDAO.select(id);
     res.end( JSON.stringify( data ) );
-};
-
-/**
- * Create movie
- * 
- * @param {Request} req 
- * @param {Response} res 
- */
-const createMovie = async (req, res) => {
-    res.end( 'TODO: Implement create movie' );
 };
 
 /**
@@ -62,9 +52,6 @@ const handleMovie = async (req, res, id)=> {
     switch (req.method) {
         case 'GET':
             return await readMovie(req, res, id);
-
-        case 'POST':
-            return await createMovie(req, res);
 
         case 'PATCH':
         case 'PUT':
