@@ -10,8 +10,8 @@ const modelValidator = require('./modelValidator');
 const defaultArgs = {
     title: 'Movie',
     format: 'Streaming',
-    length: 0,
-    release: 1800,
+    movieLength: 0,
+    releaseYear: 1800,
     rating: 1,
 };
 
@@ -21,8 +21,8 @@ const defaultArgs = {
 const validators = {
     title: value => typeof value === 'string' && value.length >= 1 && value.length <= 50,
     format: value => typeof value === 'string' && ['VHS', 'DVD', 'Streaming'].includes(value),
-    length: value => typeof value === 'number' && value >= 0 && value <= 500,
-    release: value => typeof value === 'number' && value >= 1800 && value <= 2100,
+    movieLength: value => typeof value === 'number' && value >= 0 && value <= 500,
+    releaseYear: value => typeof value === 'number' && value >= 1800 && value <= 2100,
     rating: value => typeof value === 'number' && value >= 1 && value <= 5,
 };
 

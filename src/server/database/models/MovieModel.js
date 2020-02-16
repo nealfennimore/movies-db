@@ -2,14 +2,14 @@ class MovieModel {
     constructor({
         title,
         format,
-        length,
-        release,
+        movieLength,
+        releaseYear,
         rating
     }){
         this.title = title;
         this.format = format;
-        this.length = length;
-        this.release = release;
+        this.movieLength = movieLength;
+        this.releaseYear = releaseYear;
         this.rating = rating;
     }
 }
