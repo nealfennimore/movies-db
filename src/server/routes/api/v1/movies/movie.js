@@ -46,8 +46,9 @@ const updateMovie = async (req, res, id) => {
  * @param {Number} id Movie id
  */
 const deleteMovie = async (req, res, id) => {
-    const data = await MovieDAO.deleteById(id);
-    res.end( JSON.stringify(data) );
+    await MovieDAO.deleteById(id);
+    res.writeHead(204);
+    res.end();
 };
 
 /**
