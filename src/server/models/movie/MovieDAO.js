@@ -16,7 +16,7 @@ class MovieDAO {
      * @returns {Movie}
      * @memberof MovieDAO
      */
-    static async selectById(id){
+    static async select(id){
         const { rows: [ row ] } = await db.query(
             'SELECT * FROM movies WHERE id = $1',
             [ id ]
@@ -75,6 +75,15 @@ class MovieDAO {
     }
 
     /**
+     * Update a movie by id and payload
+     * 
+     * @static
+     * @param {Number} id Movie id
+     * @param {Object} payload Payload
+     * @throws {BadRequest}
+     * @returns {Movie}
+     * @memberof MovieDAO
+     */
     static async update(id, payload){
         const movie = Movie.create({ ...payload, id });
 
@@ -113,7 +122,7 @@ class MovieDAO {
      * @returns {Number} Rows deleted
      * @memberof MovieDAO
      */
-    static async deleteById(id){
+    static async delete(id){
         const { rowCount } = await db.query(
             'DELETE FROM movies WHERE id = $1',
             [ id ]
