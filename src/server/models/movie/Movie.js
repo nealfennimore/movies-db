@@ -2,7 +2,7 @@
  * Internal Dependencies
  */
 const MovieModel = require('./MovieModel');
-const modelValidator = require('./modelValidator');
+const modelValidator = require('../validator');
 
 /**
  * Default values for a movie
