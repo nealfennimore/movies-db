@@ -34,7 +34,8 @@ const createMovie = async (req, res) => {
  * @param {Number} id Movie id
  */
 const updateMovie = async (req, res, id) => {
-    res.end( 'TODO: Implement update movie' );
+    const data = await MovieDAO.update(id, res.locals.payload);
+    res.end( JSON.stringify( data ) );
 };
 
 /**

@@ -2,7 +2,8 @@
  * Internal Dependencies
  */
 const db = require('server/database');
-const { NoResourceFound } = require('server/errors');
+const Movie = require('server/models/movie/Movie');
+const { NoResourceFound, BadRequest } = require('server/errors');
 
 class MovieDAO {
 
@@ -38,6 +39,36 @@ class MovieDAO {
             'SELECT * FROM movies'
         );
         return rows;
+    }
+
+    static async update(id, payload){
+        const movie = Movie.create({ ...payload, id });
+
+        const { rowCount } = await db.query(
+            `
+                UPDATE movies
+                SET title = $2,
+                    format = $3,
+                    movie_length = $4,
+                    release_year = $5,
+                    rating = $6
+                WHERE id = $1
+            `,
+            [
+                id,
+                movie.title,
+                movie.format,
+                movie.movie_length,
+                movie.release_year,
+                movie.rating
+            ]
+        );
+
+        if(! rowCount){
+            throw new BadRequest();
+        }
+
+        return movie;
     }
 
     /**
