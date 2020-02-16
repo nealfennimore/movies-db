@@ -44,12 +44,13 @@ const handleRoutes = async (req, res)=> {
             // Mimic expressJS API and add context to this request
             const locals = {
                 path: getPathSequence(req),
-                payload: JSON.parse( body )
+                payload: body.length ? JSON.parse( body ) : null
             };
             res.locals = locals;
             await routes(req, res);
         });
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
         res.writeHead(error.code);
         const json = {
