@@ -17,8 +17,12 @@ const client = new Client({
 });
 
 (async function init(){
-    await client.connect();
-    await seed(client);
+    try {
+        await client.connect();
+        await seed(client);
+    } catch (error) {
+        console.error(error);
+    }
 })();
 
 module.exports = client;

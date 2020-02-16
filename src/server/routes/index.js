@@ -7,8 +7,9 @@ const { STATUS_CODES } = require('http');
  * Internal Dependencies
  */
 const { getPathSequence } = require( 'server/utils/path' );
-const api = require( 'server/routes/api' );
+const { getBody } = require( 'server/utils/request' );
 const { NoMatchingRoute } = require('server/errors');
+const api = require( 'server/routes/api' );
 
 /**
  * Handle routing for path
@@ -36,19 +37,16 @@ const routes = async (req, res)=> {
  */
 const handleRoutes = async (req, res)=> {
     try {
-        let body = [];
-        req.on('data', chunk => body.push(chunk));
-        req.on('end', async ()=> {
-            body = Buffer.concat(body).toString();
+        const payload = await getBody(req);
 
-            // Mimic expressJS API and add context to this request
-            const locals = {
-                path: getPathSequence(req),
-                payload: body.length ? JSON.parse( body ) : null
-            };
-            res.locals = locals;
-            await routes(req, res);
-        });
+        // Mimic expressJS API and add context to this request
+        const locals = {
+            path: getPathSequence(req),
+            payload,
+        };
+        res.locals = locals;
+
+        await routes(req, res);
     } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
