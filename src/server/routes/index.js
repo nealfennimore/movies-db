@@ -44,7 +44,12 @@ const handleRoutes = async (req, res)=> {
     } catch (error) {
         console.error(error);
         res.writeHead(error.code);
-        res.end(STATUS_CODES[error.code]);
+        const json = {
+            error: true,
+            code: error.code,
+            message: STATUS_CODES[error.code],
+        };
+        res.end( JSON.stringify(json) );
     }
 };
 
