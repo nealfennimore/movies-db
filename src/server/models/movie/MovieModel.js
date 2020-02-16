@@ -1,15 +1,16 @@
+/* eslint-disable camelcase */
 class MovieModel {
     constructor({
         title,
         format,
-        movieLength,
-        releaseYear,
+        movie_length,
+        release_year,
         rating
     }){
         this.title = title;
         this.format = format;
-        this.movieLength = movieLength;
-        this.releaseYear = releaseYear;
+        this.movie_length = movie_length;
+        this.release_year = release_year;
         this.rating = rating;
     }
 }
