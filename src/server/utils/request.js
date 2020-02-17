@@ -1,3 +1,11 @@
+/**
+ * Internal Dependencies
+ */
+const { BadRequest } = require('server/errors');
+
+/**
+ * Valid methods for body parsing
+ */
 const METHODS = ['POST', 'PUT', 'PATCH'];
 
 /**
@@ -22,7 +30,7 @@ function getBody(req){
                     body = body.length ? JSON.parse( body ) : null;
                 } catch (error) {
                     console.error(error);
-                    body = null;
+                    reject( new BadRequest(error) );
                 } finally {
                     resolve(body);
                 }
