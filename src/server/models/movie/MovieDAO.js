@@ -72,7 +72,7 @@ class MovieDAO {
             throw new BadRequest();
         }
 
-        movie.id = row.id;
+        movie.id = Number( row.id );
         return movie;
     }
 
