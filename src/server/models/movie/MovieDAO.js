@@ -53,10 +53,11 @@ class MovieDAO {
     static async create(payload){
         const movie = Movie.create(payload);
 
-        const { rowCount } = await db.query(
+        const { rowCount, rows: [ row ] } = await db.query(
             `
                 INSERT INTO movies(title, format, movie_length, release_year, rating)
                 VALUES($1, $2, $3, $4, $5)
+                RETURNING id
             `,
             [
                 movie.title,
@@ -71,6 +72,7 @@ class MovieDAO {
             throw new BadRequest();
         }
 
+        movie.id = row.id;
         return movie;
     }
 
