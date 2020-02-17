@@ -50,11 +50,12 @@ const handleRoutes = async (req, res)=> {
     } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
-        res.writeHead(error.code);
+        const code = error.code || 404;
+        res.writeHead(code);
         const json = {
             error: true,
-            code: error.code,
-            message: STATUS_CODES[error.code],
+            code,
+            message: STATUS_CODES[code],
         };
         res.end( JSON.stringify(json) );
     }
