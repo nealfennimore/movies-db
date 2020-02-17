@@ -21,9 +21,6 @@ class MovieDAO {
             'SELECT * FROM movies WHERE id = $1',
             [ id ]
         );
-        if (! row) {
-            throw new NoResourceFound();
-        }
         return row;
     }
     
@@ -53,7 +50,7 @@ class MovieDAO {
     static async create(payload){
         const movie = Movie.create(payload);
 
-        const { rowCount, rows: [ row ] } = await db.query(
+        const { rows: [ row ] } = await db.query(
             `
                 INSERT INTO movies(title, format, movie_length, release_year, rating)
                 VALUES($1, $2, $3, $4, $5)
@@ -68,11 +65,7 @@ class MovieDAO {
             ]
         );
 
-        if(! rowCount){
-            throw new BadRequest();
-        }
-
-        movie.id = Number( row.id );
+        movie.id = Number(row.id);
         return movie;
     }
 
@@ -108,12 +101,8 @@ class MovieDAO {
                 movie.rating
             ]
         );
-
-        if(! rowCount){
-            throw new BadRequest();
-        }
-
-        return movie;
+    
+        return rowCount && movie;
     }
 
     /**
@@ -129,9 +118,6 @@ class MovieDAO {
             'DELETE FROM movies WHERE id = $1',
             [ id ]
         );
-        if (! rowCount) {
-            throw new NoResourceFound();
-        }
         return rowCount;
     }
 

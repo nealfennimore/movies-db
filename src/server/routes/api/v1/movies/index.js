@@ -1,4 +1,4 @@
-const { NoMatchingRoute } = require('server/errors');
+const { NoMatchingRoute, BadRequest, NoResourceFound } = require('server/errors');
 const MovieDAO = require('server/models/movie/MovieDAO');
 const movie = require('./movie');
 
@@ -10,6 +10,9 @@ const movie = require('./movie');
  */
 const readMovies = async (req, res) => {
     const data = await MovieDAO.selectAll();
+    if (! data) {
+        throw new NoResourceFound();
+    }
     res.end( JSON.stringify( data ) );
 };
 
@@ -21,6 +24,9 @@ const readMovies = async (req, res) => {
  */
 const createMovie = async (req, res) => {
     const data = await MovieDAO.create(res.locals.payload);
+    if (! data) {
+        throw new BadRequest();
+    }
     res.end( JSON.stringify( data ) );
 };
 

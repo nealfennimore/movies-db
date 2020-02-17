@@ -1,7 +1,7 @@
 /**
  * Internal Dependencies
  */
-const { NoMatchingRoute } = require('server/errors');
+const { NoMatchingRoute, BadRequest, NoResourceFound } = require('server/errors');
 const MovieDAO = require('server/models/movie/MovieDAO');
 
 /**
@@ -13,6 +13,9 @@ const MovieDAO = require('server/models/movie/MovieDAO');
  */
 const readMovie = async (req, res, id) => {
     const data = await MovieDAO.select(id);
+    if (! data) {
+        throw new NoResourceFound();
+    }
     res.end( JSON.stringify( data ) );
 };
 
@@ -25,6 +28,9 @@ const readMovie = async (req, res, id) => {
  */
 const updateMovie = async (req, res, id) => {
     const data = await MovieDAO.update(id, res.locals.payload);
+      if (! data) {
+        throw new BadRequest();
+    }
     res.end( JSON.stringify( data ) );
 };
 
@@ -36,7 +42,10 @@ const updateMovie = async (req, res, id) => {
  * @param {Number} id Movie id
  */
 const deleteMovie = async (req, res, id) => {
-    await MovieDAO.delete(id);
+    const count = await MovieDAO.delete(id);
+    if (! count ) {
+        throw new BadRequest();
+    }
     res.writeHead(204);
     res.end();
 };
