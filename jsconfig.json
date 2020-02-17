@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "checkJs": true,
+        "module": "commonjs",
+        "paths": {
+            "client/*": [
+                "src/client/*"
+            ],
+            "server/*": [
+                "src/server/*"
+            ],
+            "shared/*": [
+                "src/shared/*"
+            ]
+        },
+        "target": "esnext"
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "**/node_modules/*",
+        "**/dist/*"
+    ]
+}
