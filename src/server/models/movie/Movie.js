@@ -6,17 +6,6 @@ const MovieModel = require('./MovieModel');
 const modelValidator = require('../validator');
 
 /**
- * Default values for a movie
- */
-const defaultArgs = {
-    title: 'Movie',
-    format: 'Streaming',
-    movie_length: 0,
-    release_year: 1800,
-    rating: 1,
-};
-
-/**
  * Validators for valid movie properties
  */
 const validators = {
@@ -52,8 +41,7 @@ class Movie {
      * @throws {TypeError} When invalid constructor args used
      * @memberof Movie
      */
-    static create( passedArgs={}, ...args){
-        const constructorArgs = { ...defaultArgs, ...passedArgs };
+    static create( constructorArgs={}, ...args){
         const ConstructorProxy = new Proxy(MovieModel, Movie.validator);
     
         // Create movie instance by running it through constructor validity handler

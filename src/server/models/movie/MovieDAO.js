@@ -48,7 +48,7 @@ class MovieDAO {
      * @memberof MovieDAO
      */
     static async create(payload){
-        const movie = Movie.create(payload);
+        const movie = Movie.create({ ...payload, id: 0 }); // Set with temp id
 
         const { rows: [ row ] } = await db.query(
             `
