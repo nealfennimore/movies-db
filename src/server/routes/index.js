@@ -40,23 +40,22 @@ const handleRoutes = async (req, res)=> {
         const payload = await getBody(req);
 
         // Mimic expressJS API and add context to this request
-        const locals = {
+        res.locals = {
             path: getPathSequence(req),
             payload,
         };
-        res.locals = locals;
 
         await routes(req, res);
     } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
         const code = error.code || 404;
-        res.writeHead(code);
         const json = {
             error: true,
             code,
             message: STATUS_CODES[code],
         };
+        res.writeHead(code);
         res.end( JSON.stringify(json) );
     }
 };

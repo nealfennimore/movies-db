@@ -3,7 +3,6 @@
  */
 const db = require('server/database');
 const Movie = require('server/models/movie/Movie');
-const { NoResourceFound, BadRequest } = require('server/errors');
 
 class MovieDAO {
 

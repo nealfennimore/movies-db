@@ -3,19 +3,7 @@
  * Internal Dependencies
  */
 const MovieModel = require('./MovieModel');
-const modelValidator = require('../validator');
-
-/**
- * Validators for valid movie properties
- */
-const validators = {
-    id: value => typeof Number(value) === 'number' && value < Infinity,
-    title: value => typeof value === 'string' && value.length >= 1 && value.length <= 50,
-    format: value => typeof value === 'string' && ['VHS', 'DVD', 'Streaming'].includes(value),
-    movie_length: value => typeof value === 'number' && value >= 0 && value <= 500,
-    release_year: value => typeof value === 'number' && value >= 1800 && value <= 2100,
-    rating: value => typeof value === 'number' && value >= 1 && value <= 5,
-};
+const modelValidator = require('server/models/validator');
 
 /**
  * Movie
@@ -29,7 +17,14 @@ class Movie {
      * @static
      * @memberof Movie
      */
-    static validator = modelValidator(validators);
+    static validator = modelValidator({
+        id: value => typeof Number(value) === 'number' && value < Infinity,
+        title: value => typeof value === 'string' && value.length >= 1 && value.length <= 50,
+        format: value => typeof value === 'string' && ['VHS', 'DVD', 'Streaming'].includes(value),
+        movie_length: value => typeof value === 'number' && value >= 0 && value <= 500,
+        release_year: value => typeof value === 'number' && value >= 1800 && value <= 2100,
+        rating: value => typeof value === 'number' && value >= 1 && value <= 5,
+    });
 
     /**
      * Create a movie instance
