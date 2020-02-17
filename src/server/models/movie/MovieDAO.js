@@ -36,7 +36,7 @@ class MovieDAO {
      */
     static async selectAll(){
         const { rows } = await db.query(
-            'SELECT * FROM movies'
+            'SELECT * FROM movies ORDER BY id'
         );
         return rows;
     }
