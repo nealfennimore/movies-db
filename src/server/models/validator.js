@@ -34,6 +34,7 @@ const modelValidator = (validators={}) => ({
             throw new TypeError(`Cannot set: ${prop} is invalid`);
         }
         obj[prop] = value;
+        return true;
     }
 });
 
