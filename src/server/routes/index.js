@@ -10,6 +10,7 @@ const { getPathSequence } = require( 'server/utils/path' );
 const { getBody } = require( 'server/utils/request' );
 const { NoMatchingRoute } = require('server/errors');
 const api = require( 'server/routes/api' );
+const assets = require('server/routes/assets.js');
 
 /**
  * Handle routing for path
@@ -24,7 +25,7 @@ const routes = async (req, res)=> {
             return await api(req, res);
     
         default:
-            throw new NoMatchingRoute();
+            return await assets.serve(req, res);
     }
 };
 
