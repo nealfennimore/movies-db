@@ -2,7 +2,7 @@
  * External Dependencies
  */
 const { resolve } = require( 'path' );
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 
 module.exports = {
     mode: 'production',
@@ -14,23 +14,23 @@ module.exports = {
         filename: '[name].[chunkhash].js',
         chunkFilename: '[id]-[chunkhash].js',
         path: resolve( __dirname, '../../dist/client' ),
-        publicPath: '/'
+        publicPath: '/',
     },
     resolve: {
-        extensions: [ '.js', '.jsx', '.json' ]
+        extensions: ['.js', '.jsx', '.json'],
     },
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
-                use: [ 'babel-loader', ],
-                exclude: /node_modules/
-            }
-        ]
+                use: ['babel-loader'],
+                exclude: /node_modules/,
+            },
+        ],
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Movies.neal.cloud'
-        })
-    ]
+        new HtmlWebpackPlugin( {
+            title: 'Movies.neal.cloud',
+        } ),
+    ],
 };
