@@ -10,13 +10,16 @@ import { Grid } from '@material-ui/core';
  */
 import Toolbar from './components/Toolbar';
 import Layout from './components/Layout';
+import MovieTable from './components/MovieTable';
 
 
 const App = props => (
     <>
         <Toolbar />
         <Layout>
-            <Grid item>App</Grid>
+            <Grid item>
+                <MovieTable />
+            </Grid>
         </Layout>
     </>
 );
