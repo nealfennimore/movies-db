@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node src/server/models/movie/__tests__/Movie.spec.js",
+    "test": "node dist/server/models/movie/__tests__/Movie.spec.js",
     "start": "node dist/server/index.js",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --config src/client/webpack.config.js",
