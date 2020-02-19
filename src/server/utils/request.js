@@ -28,11 +28,9 @@ function getBody(req){
                 try {
                     body = Buffer.concat(body).toString();
                     body = body.length ? JSON.parse( body ) : null;
-                } catch (error) {
-                    console.error(error);
-                    reject( new BadRequest(error) );
-                } finally {
                     resolve(body);
+                } catch (error) {
+                    reject( new BadRequest(error) );
                 }
             });
     });

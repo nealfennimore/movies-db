@@ -10,6 +10,7 @@ const { getPathSequence } = require( 'server/utils/path' );
 const { getBody } = require( 'server/utils/request' );
 const { NoMatchingRoute } = require('server/errors');
 const api = require( 'server/routes/api' );
+const assets = require('server/routes/assets.js');
 
 /**
  * Handle routing for path
@@ -24,7 +25,7 @@ const routes = async (req, res)=> {
             return await api(req, res);
     
         default:
-            throw new NoMatchingRoute();
+            return await assets.serve(req, res);
     }
 };
 
@@ -40,23 +41,22 @@ const handleRoutes = async (req, res)=> {
         const payload = await getBody(req);
 
         // Mimic expressJS API and add context to this request
-        const locals = {
+        res.locals = {
             path: getPathSequence(req),
             payload,
         };
-        res.locals = locals;
 
         await routes(req, res);
     } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
         const code = error.code || 404;
-        res.writeHead(code);
         const json = {
             error: true,
             code,
             message: STATUS_CODES[code],
         };
+        res.writeHead(code);
         res.end( JSON.stringify(json) );
     }
 };

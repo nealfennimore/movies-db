@@ -4,7 +4,7 @@
 
 ```sh
 npm install
-cat .env.sample > .env # Fill out env variables
+cp .env.sample .env # Fill out env variables
 ```
 
 ## Starting
