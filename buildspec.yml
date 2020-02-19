@@ -7,9 +7,6 @@ phases:
     commands:
       - apt-get update -y
       - npm install
-  pre_build:
-    commands:
-      - npm run test
   build:
     commands:
       - npm run build
