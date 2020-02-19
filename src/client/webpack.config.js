@@ -33,6 +33,17 @@ module.exports = {
             title: 'Movies.neal.cloud',
         } ),
     ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            },
+        },
+    },
     devServer: {
         contentBase: resolve( __dirname, '../../dist/client' ),
         hot: true,
