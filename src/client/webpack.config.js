@@ -11,8 +11,8 @@ module.exports = {
         './index.js',
     ],
     output: {
-        filename: '[name].[chunkhash].js',
-        chunkFilename: '[id]-[chunkhash].js',
+        filename: '[name].[hash].js',
+        chunkFilename: '[id]-[hash].js',
         path: resolve( __dirname, '../../dist/client' ),
         publicPath: '/',
     },
@@ -33,4 +33,12 @@ module.exports = {
             title: 'Movies.neal.cloud',
         } ),
     ],
+    devServer: {
+        contentBase: resolve( __dirname, '../../dist/client' ),
+        hot: true,
+        port: 9000,
+        proxy: {
+            '/api': 'http://localhost:3000',
+        },
+    },
 };

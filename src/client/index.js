@@ -9,9 +9,21 @@ import ReactDOM from 'react-dom';
  */
 import App from './app';
 
-ReactDOM.render(
-    (
-        <App />
-    ),
-    document.body
-);
+const render = ( Component ) => {
+    ReactDOM.render(
+        <Component />,
+        document.body,
+    );
+};
+
+// Initial render
+render( App );
+
+// Start hot reloading if in dev mode
+if ( module.hot ) {
+    module.hot.accept( './app', () => {
+        // eslint-disable-next-line global-require
+        const nextApp = require( './app' ).default;
+        render( nextApp );
+    } );
+}
