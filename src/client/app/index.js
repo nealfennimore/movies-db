@@ -1,12 +1,26 @@
+/**
+ * External Dependencies
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Grid } from '@material-ui/core';
 
-const App = (props) =>{
-    return (
-        <main>App</main>
-    );
-};
+/**
+ * Internal Dependencies
+ */
+import Toolbar from './components/Toolbar';
+import Layout from './components/Layout';
 
-App.propTypes ={};
+
+const App = props => (
+    <>
+        <Toolbar />
+        <Layout>
+            <Grid item>App</Grid>
+        </Layout>
+    </>
+);
+
+App.propTypes = {};
 
 export default App;
