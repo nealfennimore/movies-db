@@ -5,6 +5,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Container, Grid, Typography } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/core/styles';
 import Layout from 'client/app/components/Layout';
 
@@ -12,6 +14,7 @@ import Layout from 'client/app/components/Layout';
  * Internal Dependencies
  */
 import MovieForm from './components/Form';
+import DeleteButton from './components/Delete';
 
 const styles = theme => ( {
     title: {
@@ -64,9 +67,16 @@ class MovieEdit extends PureComponent {
             <Layout vAlign>
                 <Grid item>
                     <Container maxWidth="sm">
-                        <Typography className={this.props.classes.title} variant="h6" component="h1">
-                            Edit Movie
-                        </Typography>
+                        <Grid container spacing={2} alignItems="center" justify="space-between">
+                            <Grid item>
+                                <Typography className={this.props.classes.title} variant="h6" component="span">
+                                    Edit Movie
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <DeleteButton />
+                            </Grid>
+                        </Grid>
                         <MovieForm
                             url={`/api/v1/movies/${id}`}
                             method="PUT"
