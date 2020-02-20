@@ -19,7 +19,7 @@ const styles = theme => ( {
     },
 } );
 
-class Movie extends PureComponent {
+class MovieEdit extends PureComponent {
     static propTypes = {
         match: PropTypes.shape( {
             params: PropTypes.shape( {
@@ -81,4 +81,4 @@ class Movie extends PureComponent {
     }
 }
 
-export default withRouter( withStyles( styles )( Movie ) );
+export default withRouter( withStyles( styles )( MovieEdit ) );

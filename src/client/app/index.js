@@ -23,7 +23,7 @@ const App = props => (
 
         <Switch>
             <Route path="/movies/:id" >
-                <Movie />
+                <MovieEdit />
             </Route>
             <Route path="/" >
                 <Home />
