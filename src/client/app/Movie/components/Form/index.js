@@ -89,8 +89,7 @@ export default class Form extends PureComponent {
     render() {
         return (
             <form ref={this.form} method={this.props.method} onSubmit={this.onSubmit}>
-
-                <Grid container spacing={3} justify="center" alignItems="center">
+                <Grid container spacing={4}>
                     <Grid item xs={9}>
                         <Input
                             label="Title"
@@ -159,10 +158,18 @@ export default class Form extends PureComponent {
                             fullWidth
                         />
                     </Grid>
+
+                    <Grid item>
+                        <Button type="submit" size="large" variant="contained" color="primary">
+                            Submit
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button type="button" size="large" variant="outlined" onClick={this.props.onCancel}>
+                            Cancel
+                        </Button>
+                    </Grid>
                 </Grid>
-                <Button type="submit" variant="contained" color="primary">
-                    Submit
-                </Button>
             </form>
         );
     }
