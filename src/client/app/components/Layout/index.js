@@ -12,7 +12,7 @@ const Layout = ( { children } ) => (
         justify="center"
         alignItems="stretch"
         style={{
-            height: '100%'
+            minHeight: '100vh',
         }}
     >
         {children}
