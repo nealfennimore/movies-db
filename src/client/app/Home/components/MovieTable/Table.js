@@ -48,6 +48,7 @@ function stableSort( array, comparator ) {
 const useStyles = makeStyles( theme => ( {
     root: {
         width: '100%',
+        maxWidth: '100vw',
     },
     paper: {
         width: '100%',
