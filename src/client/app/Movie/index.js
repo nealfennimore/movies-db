@@ -26,6 +26,11 @@ class Movie extends PureComponent {
                 id: PropTypes.number,
             } ),
         } ),
+        history: PropTypes.shape( {
+            push: PropTypes.func,
+        } ),
+        // eslint-disable-next-line react/forbid-prop-types
+        classes: PropTypes.object,
     }
 
     state = {
