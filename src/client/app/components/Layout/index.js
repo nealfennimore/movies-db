@@ -11,7 +11,7 @@ const Layout = ( { children, vAlign } ) => (
         direction="column"
         justify={vAlign ? 'center' : null}
         style={{
-            minHeight: '100vh',
+            minHeight: 'calc(100vh - 64px)',
         }}
     >
         {children}

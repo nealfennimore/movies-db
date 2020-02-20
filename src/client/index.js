@@ -10,6 +10,9 @@ import { BrowserRouter } from 'react-router-dom';
  */
 import App from './app';
 
+document.body.style = 'margin: 0;'; // Browser reset
+
+
 const render = ( Component ) => {
     ReactDOM.render(
         <BrowserRouter>
