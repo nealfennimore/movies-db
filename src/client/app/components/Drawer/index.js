@@ -4,9 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, List, ListItem } from '@material-ui/core';
-import {
-    Link,
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AppDrawer = ( {
     isOpen,
