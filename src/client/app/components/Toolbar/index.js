@@ -38,7 +38,7 @@ const AppToolbar = ( props ) => {
     const classes = useStyles();
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Toolbar className={classes.toolbar}>
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <Link className={classes.link} to="/">

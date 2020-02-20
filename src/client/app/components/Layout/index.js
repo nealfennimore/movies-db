@@ -12,6 +12,7 @@ const Layout = ( { children, vAlign } ) => (
         justify={vAlign ? 'center' : null}
         style={{
             minHeight: 'calc(100vh - 64px)',
+            paddingTop: '64px',
         }}
     >
         {children}
