@@ -16,9 +16,9 @@ import MovieTable from 'client/app/Home/components/MovieTable';
 
 const useStyles = makeStyles( theme => ( {
     fab: {
-        position: 'absolute',
+        position: 'fixed',
         bottom: theme.spacing( 2 ),
-        right: theme.spacing( 2 ),
+        left: theme.spacing( 2 ),
     },
 } ) );
 
