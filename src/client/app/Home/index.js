@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
  * Internal Dependencies
  */
 import Layout from 'client/app/components/Layout';
-import MovieTable from 'client/app/components/MovieTable';
+import MovieTable from 'client/app/Home/components/MovieTable';
 
 const useStyles = makeStyles( theme => ( {
     fab: {
