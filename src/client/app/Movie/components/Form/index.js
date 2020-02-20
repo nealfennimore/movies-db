@@ -25,6 +25,11 @@ export default class Form extends PureComponent {
             release_year: PropTypes.number,
             rating: PropTypes.number,
         } ),
+        onSuccess: PropTypes.func,
+    }
+
+    static defaultProps ={
+        onSuccess: () => {},
     }
 
     /**
@@ -58,7 +63,8 @@ export default class Form extends PureComponent {
         fetch( this.props.url, {
             method: this.props.method,
             body: JSON.stringify( this.formData ),
-        } );
+        } )
+            .then( this.props.onSuccess );
     }
 
     /**

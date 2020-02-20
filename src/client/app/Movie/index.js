@@ -46,11 +46,18 @@ class Movie extends PureComponent {
             return null;
         }
         return (
-            <MovieForm
-                url={`/api/v1/movies/${id}`}
-                method="PUT"
-                movie={this.movie}
-            />
+            <Layout>
+                <Grid item>
+                    <Container maxWidth="sm">
+                        <MovieForm
+                            url={`/api/v1/movies/${id}`}
+                            method="PUT"
+                            movie={this.movie}
+                            onSuccess={() => this.props.history.push( '/' )}
+                        />
+                    </Container>
+                </Grid>
+            </Layout>
         );
     }
 }
