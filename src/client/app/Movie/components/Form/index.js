@@ -165,7 +165,7 @@ export default class Form extends PureComponent {
                         </Button>
                     </Grid>
                     <Grid item>
-                        <Button type="button" size="large" variant="outlined" onClick={this.props.onCancel}>
+                        <Button type="button" size="large" onClick={this.props.onCancel}>
                             Cancel
                         </Button>
                     </Grid>
