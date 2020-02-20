@@ -56,7 +56,7 @@ class Movie extends PureComponent {
         }
 
         return (
-            <Layout>
+            <Layout vAlign>
                 <Grid item>
                     <Container maxWidth="sm">
                         <Typography className={this.props.classes.title} variant="h6" component="h1">

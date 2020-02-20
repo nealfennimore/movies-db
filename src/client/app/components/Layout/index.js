@@ -5,12 +5,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 
-const Layout = ( { children } ) => (
+const Layout = ( { children, vAlign } ) => (
     <Grid
         container
         direction="column"
-        justify="center"
-        alignItems="stretch"
+        justify={vAlign ? 'center' : null}
         style={{
             minHeight: '100vh',
         }}
@@ -19,6 +18,9 @@ const Layout = ( { children } ) => (
     </Grid>
 );
 
-Layout.propTypes = {};
+Layout.propTypes = {
+    children: PropTypes.node,
+    vAlign: PropTypes.bool,
+};
 
 export default Layout;
