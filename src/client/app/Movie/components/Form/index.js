@@ -27,8 +27,31 @@ export default class Form extends PureComponent {
         } ),
     }
 
+    /**
+     * Form DOM reference
+     *
+     * @memberof Form
+     */
     form = createRef();
 
+    /**
+     * Force form values to correct type
+     *
+     * @memberof Form
+     */
+    coercers = {
+        title: value => String( value ),
+        format: value => String( value ),
+        movie_length: value => Number( value ),
+        release_year: value => Number( value ),
+        rating: value => Number( value ),
+    }
+
+    /**
+     * Submit handler
+     *
+     * @memberof Form
+     */
     onSubmit = ( e ) => {
         e.preventDefault();
 
@@ -49,7 +72,8 @@ export default class Form extends PureComponent {
         const formData = new FormData( this.form.current );
         const data = {};
         for ( const [key, value] of formData ) {
-            data[key] = value;
+            const coercer = this.coercers[key];
+            data[key] = coercer( value );
         }
         return data;
     }
