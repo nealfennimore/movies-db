@@ -3,25 +3,33 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from '@material-ui/core';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from 'react-router-dom';
 
 /**
  * Internal Dependencies
  */
 import Toolbar from './components/Toolbar';
-import Layout from './components/Layout';
-import MovieTable from './components/MovieTable';
+import Home from './Home';
+import Movie from './Movie';
 
 
 const App = props => (
-    <>
+    <Router>
         <Toolbar />
-        <Layout>
-            <Grid item>
-                <MovieTable />
-            </Grid>
-        </Layout>
-    </>
+
+        <Switch>
+            <Route path="/movies/:id" >
+                <Movie />
+            </Route>
+            <Route path="/" >
+                <Home />
+            </Route>
+        </Switch>
+    </Router>
 );
 
 App.propTypes = {};

@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 /**
  * Internal Dependencies
@@ -11,7 +12,9 @@ import App from './app';
 
 const render = ( Component ) => {
     ReactDOM.render(
-        <Component />,
+        <BrowserRouter>
+            <Component />
+        </BrowserRouter>,
         document.body,
     );
 };

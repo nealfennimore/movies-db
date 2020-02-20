@@ -11,6 +11,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { withRouter } from 'react-router-dom';
 
 /**
  * Internal Dependencies
@@ -68,7 +69,7 @@ const useStyles = makeStyles( theme => ( {
     },
 } ) );
 
-export default function MovieTable( { rows } ) {
+function MovieTable( { rows, history } ) {
     const classes = useStyles();
     const [order, setOrder] = React.useState( 'asc' );
     const [orderBy, setOrderBy] = React.useState( 'calories' );
@@ -125,25 +126,24 @@ export default function MovieTable( { rows } ) {
                         <TableBody>
                             {stableSort( rows, getComparator( order, orderBy ) )
                                 .slice( page * rowsPerPage, page * rowsPerPage + rowsPerPage )
-                                .map( ( row, index ) => {
-                                    return (
-                                        <TableRow
-                                            hover
-                                            role="checkbox"
-                                            tabIndex={-1}
-                                            key={row.name}
-                                        >
-                                            <TableCell align="right">
-                                                {row.id}
-                                            </TableCell>
-                                            <TableCell align="right">{row.title}</TableCell>
-                                            <TableCell align="right">{row.format}</TableCell>
-                                            <TableCell align="right">{row.movie_length}</TableCell>
-                                            <TableCell align="right">{row.release_year}</TableCell>
-                                            <TableCell align="right">{row.rating}</TableCell>
-                                        </TableRow>
-                                    );
-                                } )}
+                                .map( ( row, index ) => (
+                                    <TableRow
+                                        hover
+                                        role="checkbox"
+                                        tabIndex={-1}
+                                        key={row.name}
+                                        onClick={() => history.push( `/movies/${row.id}` )}
+                                    >
+                                        <TableCell align="right">
+                                            {row.id}
+                                        </TableCell>
+                                        <TableCell align="right">{row.title}</TableCell>
+                                        <TableCell align="right">{row.format}</TableCell>
+                                        <TableCell align="right">{row.movie_length}</TableCell>
+                                        <TableCell align="right">{row.release_year}</TableCell>
+                                        <TableCell align="right">{row.rating}</TableCell>
+                                    </TableRow>
+                                ) )}
                             {emptyRows > 0 && (
                                 <TableRow style={{ height: 53 * emptyRows }}>
                                     <TableCell colSpan={6} />
@@ -165,3 +165,5 @@ export default function MovieTable( { rows } ) {
         </div>
     );
 }
+
+export default withRouter( MovieTable );

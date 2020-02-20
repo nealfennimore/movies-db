@@ -7,6 +7,7 @@ import { AppBar, Toolbar, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import CameraRollIcon from '@material-ui/icons/CameraRoll';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 /**
  * Internal Dependencies
@@ -30,9 +31,11 @@ const AppToolbar = ( props ) => {
         <>
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
-                    <IconButton color="inherit">
-                        <CameraRollIcon />
-                    </IconButton>
+                    <Link to="/">
+                        <IconButton color="inherit">
+                            <CameraRollIcon />
+                        </IconButton>
+                    </Link>
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggle}>
                         <MenuIcon />
                     </IconButton>

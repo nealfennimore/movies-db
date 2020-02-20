@@ -4,6 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, List, ListItem } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const AppDrawer = ( {
     isOpen,
@@ -11,11 +12,15 @@ const AppDrawer = ( {
 } ) => (
     <Drawer anchor="right" open={isOpen} onClose={onClose}>
         <List>
-            <ListItem button component="a" href="#">
-                Home
+            <ListItem>
+                <Link to="/">
+                    Home
+                </Link>
             </ListItem>
-            <ListItem button component="a" href="/">
-                Create Movie
+            <ListItem>
+                <Link to="/">
+                    Create Movie
+                </Link>
             </ListItem>
         </List>
     </Drawer>
