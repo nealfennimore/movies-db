@@ -30,7 +30,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin( {
-            title: 'Movies.neal.cloud',
+            title: 'Movies-DB',
+            meta: {
+                viewport: 'width=device-width, initial-scale=1',
+            },
         } ),
     ],
     optimization: {

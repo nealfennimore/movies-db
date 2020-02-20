@@ -3,7 +3,7 @@
  */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Select from '@material-ui/core/Select';
+import { Select, MenuItem } from '@material-ui/core';
 
 const SelectBox = ( {
     label,
@@ -24,7 +24,7 @@ const SelectBox = ( {
         >
             {
                 options.map( ( { label: optLabel, value: optValue } ) => (
-                    <option key={optValue} value={optValue}>{optLabel}</option>
+                    <MenuItem key={optValue} value={optValue}>{optLabel}</MenuItem>
                 ) )
             }
         </Select>

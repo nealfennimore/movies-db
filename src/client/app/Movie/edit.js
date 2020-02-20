@@ -4,21 +4,36 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Typography } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { withStyles } from '@material-ui/core/styles';
 import Layout from 'client/app/components/Layout';
 
 /**
  * Internal Dependencies
  */
 import MovieForm from './components/Form';
+import DeleteButton from './components/Delete';
 
-class Movie extends PureComponent {
+const styles = theme => ( {
+    title: {
+        marginBottom: theme.spacing( 3 ),
+    },
+} );
+
+class MovieEdit extends PureComponent {
     static propTypes = {
         match: PropTypes.shape( {
             params: PropTypes.shape( {
                 id: PropTypes.number,
             } ),
         } ),
+        history: PropTypes.shape( {
+            push: PropTypes.func,
+        } ),
+        // eslint-disable-next-line react/forbid-prop-types
+        classes: PropTypes.object,
     }
 
     state = {
@@ -47,15 +62,27 @@ class Movie extends PureComponent {
         if ( ! this.movie ) {
             return null;
         }
+
         return (
-            <Layout>
+            <Layout vAlign>
                 <Grid item>
                     <Container maxWidth="sm">
+                        <Grid container spacing={2} alignItems="center" justify="space-between">
+                            <Grid item>
+                                <Typography className={this.props.classes.title} variant="h6" component="span">
+                                    Edit Movie
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <DeleteButton />
+                            </Grid>
+                        </Grid>
                         <MovieForm
                             url={`/api/v1/movies/${id}`}
                             method="PUT"
                             movie={this.movie}
                             onSuccess={() => this.props.history.push( '/' )}
+                            onCancel={() => this.props.history.push( '/' )}
                         />
                     </Container>
                 </Grid>
@@ -64,4 +91,4 @@ class Movie extends PureComponent {
     }
 }
 
-export default withRouter( Movie );
+export default withRouter( withStyles( styles )( MovieEdit ) );

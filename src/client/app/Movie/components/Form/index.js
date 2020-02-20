@@ -26,10 +26,12 @@ export default class Form extends PureComponent {
             rating: PropTypes.number,
         } ),
         onSuccess: PropTypes.func,
+        onCancel: PropTypes.func,
     }
 
     static defaultProps ={
         onSuccess: () => {},
+        onCancel: () => {},
     }
 
     /**
@@ -87,9 +89,8 @@ export default class Form extends PureComponent {
     render() {
         return (
             <form ref={this.form} method={this.props.method} onSubmit={this.onSubmit}>
-
-                <Grid container spacing={3} justify="center" alignItems="center">
-                    <Grid item xs={9}>
+                <Grid container spacing={4}>
+                    <Grid item sm={9} xs={12}>
                         <Input
                             label="Title"
                             name="title"
@@ -99,7 +100,7 @@ export default class Form extends PureComponent {
                         />
                     </Grid>
 
-                    <Grid item xs={3}>
+                    <Grid item sm={3} xs={12}>
                         <Select
                             label="Format"
                             name="format"
@@ -113,7 +114,7 @@ export default class Form extends PureComponent {
                         />
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item sm={4} xs={12}>
                         <Input
                             label="Movie Length"
                             type="number"
@@ -128,7 +129,7 @@ export default class Form extends PureComponent {
                         />
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item sm={4} xs={12}>
                         <Input
                             label="Release"
                             type="number"
@@ -143,7 +144,7 @@ export default class Form extends PureComponent {
                         />
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item sm={4} xs={12}>
                         <Input
                             label="Rating"
                             type="number"
@@ -157,10 +158,18 @@ export default class Form extends PureComponent {
                             fullWidth
                         />
                     </Grid>
+
+                    <Grid item>
+                        <Button type="submit" size="large" variant="contained" color="primary">
+                            Submit
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button type="button" size="large" onClick={this.props.onCancel}>
+                            Cancel
+                        </Button>
+                    </Grid>
                 </Grid>
-                <Button type="submit" variant="contained" color="primary">
-                    Submit
-                </Button>
             </form>
         );
     }

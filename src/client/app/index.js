@@ -14,7 +14,8 @@ import {
  */
 import Toolbar from './components/Toolbar';
 import Home from './Home';
-import Movie from './Movie';
+import MovieNew from './Movie/new';
+import MovieEdit from './Movie/edit';
 
 
 const App = props => (
@@ -22,8 +23,11 @@ const App = props => (
         <Toolbar />
 
         <Switch>
+            <Route path="/movies/new" >
+                <MovieNew />
+            </Route>
             <Route path="/movies/:id" >
-                <Movie />
+                <MovieEdit />
             </Route>
             <Route path="/" >
                 <Home />

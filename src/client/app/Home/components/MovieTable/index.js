@@ -3,6 +3,7 @@
  */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Container } from '@material-ui/core';
 
 /**
  * Internal Dependencies
@@ -34,7 +35,9 @@ export default class MovieTable extends PureComponent {
 
     render() {
         return (
-            <Table rows={this.rows} />
+            <Container maxWidth="lg" disableGutters>
+                <Table rows={this.rows} />
+            </Container>
         );
     }
 }
