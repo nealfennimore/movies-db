@@ -4,13 +4,20 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import Layout from 'client/app/components/Layout';
 
 /**
  * Internal Dependencies
  */
 import MovieForm from './components/Form';
+
+const styles = theme => ( {
+    title: {
+        marginBottom: theme.spacing( 3 ),
+    },
+} );
 
 class Movie extends PureComponent {
     static propTypes = {
@@ -47,10 +54,14 @@ class Movie extends PureComponent {
         if ( ! this.movie ) {
             return null;
         }
+
         return (
             <Layout>
                 <Grid item>
                     <Container maxWidth="sm">
+                        <Typography className={this.props.classes.title} variant="h6" component="h1">
+                            Edit Movie
+                        </Typography>
                         <MovieForm
                             url={`/api/v1/movies/${id}`}
                             method="PUT"
@@ -65,4 +76,4 @@ class Movie extends PureComponent {
     }
 }
 
-export default withRouter( Movie );
+export default withRouter( withStyles( styles )( Movie ) );
