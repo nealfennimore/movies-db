@@ -3,9 +3,9 @@
  */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import CameraRollIcon from '@material-ui/icons/CameraRoll';
+import MovieCreationTwoToneIcon from '@material-ui/icons/MovieCreationTwoTone';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +21,15 @@ const useStyles = makeStyles( theme => ( {
     toolbar: {
         justifyContent: 'space-between',
     },
+    title: {
+        color: 'white',
+        ...theme.typography.button,
+    },
+    link: {
+        textDecoration: 'none',
+        display: 'flex',
+        alignItems: 'center',
+    },
 } ) );
 
 const AppToolbar = ( props ) => {
@@ -31,10 +40,14 @@ const AppToolbar = ( props ) => {
         <>
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
-                    <Link to="/">
-                        <IconButton color="inherit">
-                            <CameraRollIcon />
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <Link className={classes.link} to="/">
+                        <IconButton style={{ color: 'white' }}>
+                            <MovieCreationTwoToneIcon />
                         </IconButton>
+                        <Typography className={classes.title} variant="button" component="span">
+                            Movies-DB
+                        </Typography>
                     </Link>
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggle}>
                         <MenuIcon />
