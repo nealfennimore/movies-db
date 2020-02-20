@@ -90,7 +90,7 @@ export default class Form extends PureComponent {
         return (
             <form ref={this.form} method={this.props.method} onSubmit={this.onSubmit}>
                 <Grid container spacing={4}>
-                    <Grid item xs={9}>
+                    <Grid item sm={9} xs={12}>
                         <Input
                             label="Title"
                             name="title"
@@ -100,7 +100,7 @@ export default class Form extends PureComponent {
                         />
                     </Grid>
 
-                    <Grid item xs={3}>
+                    <Grid item sm={3} xs={12}>
                         <Select
                             label="Format"
                             name="format"
@@ -114,7 +114,7 @@ export default class Form extends PureComponent {
                         />
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item sm={4} xs={12}>
                         <Input
                             label="Movie Length"
                             type="number"
@@ -129,7 +129,7 @@ export default class Form extends PureComponent {
                         />
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item sm={4} xs={12}>
                         <Input
                             label="Release"
                             type="number"
@@ -144,7 +144,7 @@ export default class Form extends PureComponent {
                         />
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item sm={4} xs={12}>
                         <Input
                             label="Rating"
                             type="number"
