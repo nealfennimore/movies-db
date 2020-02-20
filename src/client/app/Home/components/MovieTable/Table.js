@@ -10,7 +10,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import { withRouter } from 'react-router-dom';
 
 /**
@@ -106,63 +105,61 @@ function MovieTable( { rows, history } ) {
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
-                <MovieTableToolbar numSelected={selected.length} />
-                <TableContainer>
-                    <Table
-                        className={classes.table}
-                        aria-labelledby="tableTitle"
-                        size="medium"
-                        aria-label="enhanced table"
-                    >
-                        <MovieTableHeader
-                            classes={classes}
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
-                            onRequestSort={handleRequestSort}
-                            rowCount={rows.length}
-                        />
-                        <TableBody>
-                            {stableSort( rows, getComparator( order, orderBy ) )
-                                .slice( page * rowsPerPage, page * rowsPerPage + rowsPerPage )
-                                .map( ( row, index ) => (
-                                    <TableRow
-                                        hover
-                                        role="checkbox"
-                                        tabIndex={-1}
-                                        key={row.name}
-                                        onClick={() => history.push( `/movies/${row.id}` )}
-                                    >
-                                        <TableCell align="right">
-                                            {row.id}
-                                        </TableCell>
-                                        <TableCell align="right">{row.title}</TableCell>
-                                        <TableCell align="right">{row.format}</TableCell>
-                                        <TableCell align="right">{row.movie_length}</TableCell>
-                                        <TableCell align="right">{row.release_year}</TableCell>
-                                        <TableCell align="right">{row.rating}</TableCell>
-                                    </TableRow>
-                                ) )}
-                            {emptyRows > 0 && (
-                                <TableRow style={{ height: 53 * emptyRows }}>
-                                    <TableCell colSpan={6} />
+            <MovieTableToolbar numSelected={selected.length} />
+            <TableContainer>
+                <Table
+                    className={classes.table}
+                    aria-labelledby="tableTitle"
+                    size="medium"
+                    aria-label="enhanced table"
+                >
+                    <MovieTableHeader
+                        classes={classes}
+                        numSelected={selected.length}
+                        order={order}
+                        orderBy={orderBy}
+                        onSelectAllClick={handleSelectAllClick}
+                        onRequestSort={handleRequestSort}
+                        rowCount={rows.length}
+                    />
+                    <TableBody>
+                        {stableSort( rows, getComparator( order, orderBy ) )
+                            .slice( page * rowsPerPage, page * rowsPerPage + rowsPerPage )
+                            .map( ( row, index ) => (
+                                <TableRow
+                                    hover
+                                    role="checkbox"
+                                    tabIndex={-1}
+                                    key={row.name}
+                                    onClick={() => history.push( `/movies/${row.id}` )}
+                                >
+                                    <TableCell align="right">
+                                        {row.id}
+                                    </TableCell>
+                                    <TableCell align="right">{row.title}</TableCell>
+                                    <TableCell align="right">{row.format}</TableCell>
+                                    <TableCell align="right">{row.movie_length}</TableCell>
+                                    <TableCell align="right">{row.release_year}</TableCell>
+                                    <TableCell align="right">{row.rating}</TableCell>
                                 </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                />
-            </Paper>
+                            ) )}
+                        {emptyRows > 0 && (
+                            <TableRow style={{ height: 53 * emptyRows }}>
+                                <TableCell colSpan={6} />
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
         </div>
     );
 }
