@@ -26,10 +26,12 @@ export default class Form extends PureComponent {
             rating: PropTypes.number,
         } ),
         onSuccess: PropTypes.func,
+        onCancel: PropTypes.func,
     }
 
     static defaultProps ={
         onSuccess: () => {},
+        onCancel: () => {},
     }
 
     /**

@@ -56,6 +56,7 @@ class Movie extends PureComponent {
                             method="PUT"
                             movie={this.movie}
                             onSuccess={() => this.props.history.push( '/' )}
+                            onCancel={() => this.props.history.push( '/' )}
                         />
                     </Container>
                 </Grid>
