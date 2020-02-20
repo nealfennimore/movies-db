@@ -88,7 +88,7 @@ export default class Form extends PureComponent {
         return (
             <form ref={this.form} method={this.props.method} onSubmit={this.onSubmit}>
 
-                <Grid container spacing={3}>
+                <Grid container spacing={3} justify="center" alignItems="center">
                     <Grid item xs={9}>
                         <Input
                             label="Title"

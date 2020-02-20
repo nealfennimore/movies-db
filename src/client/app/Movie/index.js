@@ -4,6 +4,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { Container, Grid } from '@material-ui/core';
+import Layout from 'client/app/components/Layout';
 
 /**
  * Internal Dependencies

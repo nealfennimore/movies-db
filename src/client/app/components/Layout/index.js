@@ -11,6 +11,9 @@ const Layout = ( { children } ) => (
         direction="column"
         justify="center"
         alignItems="stretch"
+        style={{
+            height: '100%'
+        }}
     >
         {children}
     </Grid>
