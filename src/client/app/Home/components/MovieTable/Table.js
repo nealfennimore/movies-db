@@ -52,6 +52,9 @@ const useStyles = makeStyles( theme => ( {
     table: {
         minWidth: 750,
     },
+    tableRow: {
+        cursor: 'pointer',
+    },
     visuallyHidden: {
         border: 0,
         clip: 'rect(0 0 0 0)',
@@ -128,6 +131,7 @@ function MovieTable( { rows, history } ) {
                                     tabIndex={-1}
                                     key={row.name}
                                     onClick={() => history.push( `/movies/${row.id}` )}
+                                    className={classes.tableRow}
                                 >
                                     <TableCell align="right">
                                         {row.id}
