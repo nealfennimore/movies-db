@@ -5,8 +5,8 @@
  * @extends {Error}
  */
 class NoResourceFound extends Error {
-    constructor(message='No resource found') {
-        super(message);
+    constructor( message = 'No resource found' ) {
+        super( message );
         this.name = 'NoResourceFound';
         this.code = 404;
     }
