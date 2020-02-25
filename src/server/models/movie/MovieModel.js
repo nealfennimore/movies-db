@@ -1,13 +1,13 @@
 /* eslint-disable camelcase */
 class MovieModel {
-    constructor({
+    constructor( {
         id,
         title,
         format,
         movie_length,
         release_year,
-        rating
-    }){
+        rating,
+    } ) {
         this.id = id;
         this.title = title;
         this.format = format;

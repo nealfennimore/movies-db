@@ -18,7 +18,7 @@ class Movie {
      * @memberof Movie
      */
     static validator = modelValidator( {
-        id: value => typeof Number( value ) === 'number' && value < Infinity,
+        id: value => typeof Number( value ) === 'number' && value > 0 && value < Infinity,
         title: value => typeof value === 'string' && value.length >= 1 && value.length <= 50,
         format: value => typeof value === 'string' && ['VHS', 'DVD', 'Streaming'].includes( value ),
         movie_length: value => typeof value === 'number' && value >= 0 && value <= 500,
