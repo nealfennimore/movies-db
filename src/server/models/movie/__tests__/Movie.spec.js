@@ -16,7 +16,7 @@ describe( 'Movie Validation', () => {
         it( 'should throw an error on invalid types when setting', () => {
             expect( () => {
                 const movie = Movie.create();
-                movie.id = 0;
+                movie.id = -1;
             } ).toThrow( new TypeError( 'Cannot set: id is invalid' ) );
         } );
 
