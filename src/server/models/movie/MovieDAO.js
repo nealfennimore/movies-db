@@ -1,55 +1,52 @@
 /**
  * Internal Dependencies
  */
-const db = require('server/database');
-const Movie = require('server/models/movie/Movie');
+const db = require( 'server/database' );
+const Movie = require( 'server/models/movie/Movie' );
 
 class MovieDAO {
-
     /**
      * Get a movie by id
-     * 
+     *
      * @static
      * @param {Number} id Movie id
      * @throws {NoResourceFound}
      * @returns {Movie}
      * @memberof MovieDAO
      */
-    static async select(id){
-        const { rows: [ row ] } = await db.query(
+    static async select( id ) {
+        const { rows: [row] } = await db.query(
             'SELECT * FROM movies WHERE id = $1',
-            [ id ]
+            [id],
         );
         return row;
     }
-    
+
     /**
      * Get all movies
      *
      * @static
-     * @returns {Array<Movie>} 
+     * @returns {Array<Movie>}
      * @memberof MovieDAO
      */
-    static async selectAll(){
-        const { rows } = await db.query(
-            'SELECT * FROM movies ORDER BY id'
-        );
+    static async selectAll() {
+        const { rows } = await db.query( 'SELECT * FROM movies ORDER BY id' );
         return rows;
     }
 
     /**
      * Create a new movie
-     * 
+     *
      * @static
      * @param {Object} payload Payload
      * @throws {BadRequest}
      * @returns {Movie}
      * @memberof MovieDAO
      */
-    static async create(payload){
-        const movie = Movie.create({ ...payload, id: 0 }); // Set with temp id
+    static async create( payload ) {
+        const movie = Movie.create( { ...payload, id: 0 } ); // Set with temp id
 
-        const { rows: [ row ] } = await db.query(
+        const { rows: [row] } = await db.query(
             `
                 INSERT INTO movies(title, format, movie_length, release_year, rating)
                 VALUES($1, $2, $3, $4, $5)
@@ -60,17 +57,17 @@ class MovieDAO {
                 movie.format,
                 movie.movie_length,
                 movie.release_year,
-                movie.rating
-            ]
+                movie.rating,
+            ],
         );
 
-        movie.id = Number(row.id);
+        movie.id = Number( row.id );
         return movie;
     }
 
     /**
      * Update a movie by id and payload
-     * 
+     *
      * @static
      * @param {Number} id Movie id
      * @param {Object} payload Payload
@@ -78,8 +75,8 @@ class MovieDAO {
      * @returns {Movie}
      * @memberof MovieDAO
      */
-    static async update(id, payload){
-        const movie = Movie.create({ ...payload, id });
+    static async update( id, payload ) {
+        const movie = Movie.create( { ...payload, id } );
 
         const { rowCount } = await db.query(
             `
@@ -97,10 +94,10 @@ class MovieDAO {
                 movie.format,
                 movie.movie_length,
                 movie.release_year,
-                movie.rating
-            ]
+                movie.rating,
+            ],
         );
-    
+
         return rowCount && movie;
     }
 
@@ -112,14 +109,13 @@ class MovieDAO {
      * @returns {Number} Rows deleted
      * @memberof MovieDAO
      */
-    static async delete(id){
+    static async delete( id ) {
         const { rowCount } = await db.query(
             'DELETE FROM movies WHERE id = $1',
-            [ id ]
+            [id],
         );
         return rowCount;
     }
-
 }
 
 module.exports = MovieDAO;

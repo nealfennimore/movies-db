@@ -5,8 +5,8 @@
  * @extends {Error}
  */
 class BadRequest extends Error {
-    constructor(message='Bad Request') {
-        super(message);
+    constructor( message = 'Bad Request' ) {
+        super( message );
         this.name = 'BadRequest';
         this.code = 400;
     }
