@@ -1,3 +1,6 @@
+[![codecov](https://codecov.io/gh/nealfennimore/movies-db/branch/master/graph/badge.svg)](https://codecov.io/gh/nealfennimore/movies-db)
+![Test](https://github.com/nealfennimore/movies-db/workflows/Test/badge.svg)
+
 # Movies DB
 
 ## Installation
